@@ -1,7 +1,7 @@
 // application/use-cases/CreateOrder.ts
-import { Order } from "../../domain/entities/order"
-import { InMemoryOrderRepository } from "../../infrastructure/repositories/order.repository"
-import { EmailService } from "../services/email-service"
+import { Order } from "../../domain/entities/order.js"
+import { InMemoryOrderRepository } from "../../infrastructure/repositories/order.repository.js"
+import { EmailService } from "../services/email-service.js"
 
 export class CreateOrder {
   constructor(
