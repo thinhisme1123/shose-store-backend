@@ -25,4 +25,8 @@ export class ProductRepo implements IProductRepo {
       ],
     }).lean();
   }
+
+  async findAll(): Promise<Product[]> {
+    return ProductModel.find({}).lean();
+  }
 }

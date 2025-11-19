@@ -5,4 +5,5 @@ export interface IProductRepo {
   findByCategory(category: string): Promise<Product[]>
   findByGender(gender: string): Promise<Product[]>
   searchByKeyword(keyWord: string): Promise<Product[]>
+  findAll(): Promise<Product[]>
 }
