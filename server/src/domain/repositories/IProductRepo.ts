@@ -6,4 +6,5 @@ export interface IProductRepo {
   findByGender(gender: string): Promise<Product[]>
   searchByKeyword(keyWord: string): Promise<Product[]>
   findAll(): Promise<Product[]>
+  updateProductById(id: string, newData: Product): Promise<Product>
 }

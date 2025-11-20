@@ -29,4 +29,12 @@ export class ProductRepo implements IProductRepo {
   async findAll(): Promise<Product[]> {
     return ProductModel.find({}).lean();
   }
+
+  
+  async updateProductById(id: string, newData: Product): Promise<Product> {
+    return await ProductModel.findByIdAndUpdate(id, newData, {
+      new: true,
+      runValidators: true
+    });
+  }
 }

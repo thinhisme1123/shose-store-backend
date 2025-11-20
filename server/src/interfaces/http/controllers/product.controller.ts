@@ -4,12 +4,14 @@ import { ProductRepo } from "../../../infrastructure/repositories/product.reposi
 import { GetProductBySlug } from "../../../application/use-cases/get-product-by-slug"
 import { GetProductBySearch } from "../../../application/use-cases/get-product-by-search"
 import { GetAllProducts } from "../../../application/use-cases/get-all-product"
+import { UpdateProductById } from "../../../application/use-cases/update-product-by-id"
 
 const repo = new ProductRepo()
 const getProductsByCollection = new GetProductsByCollection(repo)
 const getProductBySlug = new GetProductBySlug(repo)
 const getProductBySearch = new GetProductBySearch(repo)
 const getAllProduct = new GetAllProducts(repo)
+const updateProductById = new UpdateProductById(repo)
 
 export async function productCollectionController(req: Request, res: Response) {
   try {
@@ -49,6 +51,22 @@ export async function getAllProductController(req: Request, res: Response) {
     return res.json({data: product})
   } catch (err) {
     res.status(500).json({ error: "Internal Server Error" })
+  }
+}
+
+export async function updateProductController(req: Request, res: Response) {
+  try {
+    const { id } = req.params;
+    const updated = await updateProductById.execute(id, req.body);
+
+    if (!updated) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    res.json({ message: "Product updated successfully", product: updated });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server error" });
   }
 }
 
