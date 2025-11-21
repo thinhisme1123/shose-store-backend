@@ -7,6 +7,10 @@ export class ProductRepo implements IProductRepo {
     return ProductModel.findOne({ slug }).lean();
   }
 
+  async findById(id: string) {
+    return await ProductModel.findById(id);
+  }
+
   async findByCategory(category: string): Promise<Product[]> {
     return ProductModel.find({ category }).lean();
   }
@@ -37,4 +41,14 @@ export class ProductRepo implements IProductRepo {
       runValidators: true
     });
   }
+
+  async createProduct(data: Product) {
+    return await ProductModel.create(data);
+  }
+
+  async deleteProduct(id: string) {
+    return await ProductModel.findByIdAndDelete(id);
+  }
+
+  
 }

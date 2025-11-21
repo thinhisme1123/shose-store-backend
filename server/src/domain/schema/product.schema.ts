@@ -3,7 +3,6 @@ import { Product } from "../entities/product"
 
 const productSchema = new Schema<Product>(
   {
-    id: { type: String, required: true },
     title: { type: String, required: true },
     slug: { type: String, required: true, unique: true },
     price: { type: Number, required: true },
