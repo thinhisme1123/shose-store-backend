@@ -65,13 +65,13 @@ export async function getAllProductController(req: Request, res: Response) {
 export async function updateProductController(req: Request, res: Response) {
   try {
     const { id } = req.params;
-    const updated = await updateProductById.execute(id, req.body);
+    const updatedPro = await updateProductById.execute(id, req.body);
 
-    if (!updated) {
+    if (!updatedPro) {
       return res.status(404).json({ message: "Product not found" });
     }
 
-    res.json({ message: "Product updated successfully", product: updated });
+    res.json({ message: "Product updated successfully", data: updatedPro });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Server error" });
@@ -81,7 +81,7 @@ export async function updateProductController(req: Request, res: Response) {
 export async function createNewProductController(req: Request, res: Response) {
   try {
     const createPro = await createProduct.execute(req.body);
-    res.status(201).json({ message: "Product created", createPro });
+    res.status(201).json({ message: "Product Created Successfully!", data: createPro });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Server error" });

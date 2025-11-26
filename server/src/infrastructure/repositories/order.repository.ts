@@ -1,4 +1,4 @@
-import { IOrderRepository } from "../../application/repositories/order-repository";
+import { IOrderRepository } from "../../domain/repositories/order.interface";
 import { Order } from "../../domain/entities/order";
 
 export class InMemoryOrderRepository implements IOrderRepository {

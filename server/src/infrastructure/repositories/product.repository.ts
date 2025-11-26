@@ -1,5 +1,5 @@
 import { ProductModel } from "../../domain/schema/product.schema";
-import { IProductRepo } from "../../domain/repositories/IProductRepo";
+import { IProductRepo } from "../../domain/repositories/product.interface";
 import { Product } from "../../domain/entities/product";
 
 export class ProductRepo implements IProductRepo {

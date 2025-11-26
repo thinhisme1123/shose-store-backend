@@ -79,8 +79,9 @@ export class NodeMailerEmailService {
 
     <h3 style="border-bottom:1px solid #eee; padding-bottom:5px;">👤 Customer Info</h3>
     <p>
-      <strong>${order.firstName} ${order.lastName}</strong><br/>
-      ${order.email}
+      Name: <strong>${order.firstName} ${order.lastName}</strong><br/>
+      Email: ${order.email}<br/>
+      Phone Number:  ${order.phoneNumber} 
     </p>
 
     <h3 style="border-bottom:1px solid #eee; padding-bottom:5px;">🚚 Shipping Address</h3>

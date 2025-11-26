@@ -1,4 +1,4 @@
-import { Order } from "../../domain/entities/order";
+import { Order } from "../entities/order";
 
 export interface IOrderRepository {
   save(order: Order): Promise<void>
