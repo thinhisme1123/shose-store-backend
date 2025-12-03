@@ -1,4 +1,4 @@
-import { IAccountRepo } from './../../domain/repositories/account.interface';
+import { IAccountRepo } from '../../../domain/repositories/account.interface';
 import bcrypt from "bcrypt"
 
 export class RegisterUser {
@@ -24,6 +24,7 @@ export class RegisterUser {
       email: data.email,
       password: hashed,
       subscribeNewsletter: data.subscribeNewsletter,
+      wishlist: [],
       createdAt: new Date(),
     }
 

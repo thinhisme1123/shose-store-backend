@@ -1,13 +1,13 @@
 import { Request, Response } from "express";
-import { GetProductsByCollection } from "../../../application/use-cases/get-product-by-collection";
+import { GetProductsByCollection } from "../../../application/use-cases/product/get-product-by-collection.usecase";
 import { ProductRepo } from "../../../infrastructure/repositories/product.repository";
-import { GetProductBySlug } from "../../../application/use-cases/get-product-by-slug";
-import { GetProductBySearch } from "../../../application/use-cases/get-product-by-search";
-import { GetAllProducts } from "../../../application/use-cases/get-all-product";
-import { UpdateProductById } from "../../../application/use-cases/update-product-by-id";
-import { CreateProduct } from "../../../application/use-cases/create-product";
-import { DeleteProduct } from "../../../application/use-cases/delete-product";
-import { GetProductById } from "../../../application/use-cases/get-product-by-id";
+import { GetProductBySlug } from "../../../application/use-cases/product/get-product-by-slug.usecase";
+import { GetProductBySearch } from "../../../application/use-cases/product/get-product-by-search.usecase";
+import { GetAllProducts } from "../../../application/use-cases/product/get-all-product.usecase";
+import { UpdateProductById } from "../../../application/use-cases/product/update-product-by-id.usecase";
+import { CreateProduct } from "../../../application/use-cases/product/create-product.usecase";
+import { DeleteProduct } from "../../../application/use-cases/product/delete-product.usecase";
+import { GetProductById } from "../../../application/use-cases/product/get-product-by-id.usecase";
 
 const repo = new ProductRepo();
 const getProductsByCollection = new GetProductsByCollection(repo);

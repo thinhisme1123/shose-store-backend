@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt"
-import { IAccountRepo } from "../../domain/repositories/account.interface"
-import { jwtUtils } from "../../utils/jwt"
-import { User } from "../../domain/entities/user"
+import { IAccountRepo } from "../../../domain/repositories/account.interface"
+import { jwtUtils } from "../../../utils/jwt"
+import { User } from "../../../domain/entities/user"
 
 export class LoginUseCase {
   constructor(private repo: IAccountRepo) {}

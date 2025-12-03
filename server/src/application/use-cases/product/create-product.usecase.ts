@@ -1,5 +1,5 @@
-import { Product } from "../../domain/entities/product.js"
-import { IProductRepo } from "../../domain/repositories/product.interface.js"
+import { Product } from "../../../domain/entities/product.js"
+import { IProductRepo } from "../../../domain/repositories/product.interface.js"
 
 export class CreateProduct {
   constructor(private repo: IProductRepo) {}

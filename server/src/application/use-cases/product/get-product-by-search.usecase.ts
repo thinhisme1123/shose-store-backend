@@ -1,4 +1,4 @@
-import { IProductRepo } from "../../domain/repositories/product.interface"
+import { IProductRepo } from "../../../domain/repositories/product.interface"
 
 export class GetProductBySearch {
   constructor(private repo: IProductRepo) {}

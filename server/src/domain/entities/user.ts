@@ -1,3 +1,5 @@
+import { Product } from "./product"
+
 export interface User {
   id: string
   fullName: string
@@ -6,4 +8,5 @@ export interface User {
   subscribeNewsletter?: boolean
   createdAt?: Date;
   updatedAt?: Date;
+  wishlist: (string | Product)[]
 }
