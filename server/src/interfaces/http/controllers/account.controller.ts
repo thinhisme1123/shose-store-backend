@@ -1,3 +1,4 @@
+import { User } from './../../../domain/entities/user';
 import { Request, Response } from "express";
 import { UserRepository } from "../../../infrastructure/repositories/account.repository";
 import { RegisterUser } from "../../../application/use-cases/account/register.usecase";
@@ -8,6 +9,7 @@ import { ChangePasswordUseCase } from "../../../application/use-cases/account/ch
 import { GetWishlistUseCase } from "../../../application/use-cases/wishlist/get-wishlist.usecase";
 import { AddToWishlistUseCase } from "../../../application/use-cases/wishlist/add-wishlist.usecase";
 import { RemoveWishlistUseCase } from "../../../application/use-cases/wishlist/remote-from-wishlist.usecase";
+import { log } from "node:console";
 
 const repo = new UserRepository();
 
@@ -44,6 +46,7 @@ export async function regsiterController(req: Request, res: Response) {
 export async function getMeController(req, res) {
   try {
     const result = await getMe.execute(req.user);
+    
     return res.json({ user: result });
   } catch (error) {
     console.log(error);
@@ -102,6 +105,7 @@ export async function addWishlistController(req, res) {
 export async function removeWishlistController(req, res) {
   try {
     const { productId } = req.params;
+
     const items = await removeWishlist.execute(req.user.id, productId);
     res.json({ wishlist: items });
   } catch (e) {
