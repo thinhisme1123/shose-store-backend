@@ -8,6 +8,7 @@ import { UpdateProductById } from "../../../application/use-cases/product/update
 import { CreateProduct } from "../../../application/use-cases/product/create-product.usecase";
 import { DeleteProduct } from "../../../application/use-cases/product/delete-product.usecase";
 import { GetProductById } from "../../../application/use-cases/product/get-product-by-id.usecase";
+import cloudinary from "../../../config/cloudinary";
 
 const repo = new ProductRepo();
 const getProductsByCollection = new GetProductsByCollection(repo);
@@ -115,5 +116,49 @@ export async function getProductByIdController(req: Request, res: Response) {
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Server error" });
+  }
+}
+
+export async function uploadImageController(req: Request, res: Response) {
+  try {
+    if (!req.files || req.files.length === 0) {
+      return res.status(400).json({ error: 'No files uploaded' });
+    }
+
+    // Upload all files to Cloudinary
+    const uploadPromises = req.files.map(file => {
+      return new Promise((resolve, reject) => {
+        const uploadStream = cloudinary.uploader.upload_stream(
+          {
+            folder: 'products', // Optional: organize in folders
+            resource_type: 'auto'
+          },
+          (error, result) => {
+            if (error) reject(error);
+            else resolve(result);
+          }
+        );
+        
+        uploadStream.end(file.buffer);
+      });
+    });
+
+    const results = await Promise.all(uploadPromises);
+    
+    // Return only the URLs
+    const imageUrls = results.map(result => result.secure_url);
+
+    res.json({
+      success: true,
+      images: imageUrls,
+      count: imageUrls.length
+    });
+
+  } catch (error) {
+    console.error('Upload error:', error);
+    res.status(500).json({ 
+      error: 'Upload failed', 
+      message: error.message 
+    });
   }
 }
