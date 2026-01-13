@@ -1,0 +1,10 @@
+// domain/entities/review.ts
+export interface Review {
+  productId: string
+  userId: string
+  userName: string
+  rating: number   // 1–5
+  content: string
+  images?: string[]
+  createdAt?: Date
+}
