@@ -4,6 +4,7 @@ export interface Review {
   userId: string
   userName: string
   rating: number   // 1–5
+  title: string
   content: string
   images?: string[]
   createdAt?: Date

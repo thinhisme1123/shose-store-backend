@@ -16,6 +16,7 @@ export async function createReviewController(req, res) {
         userId: req.user.id,
         userName: req.user.fullName,
         rating: req.body.rating,
+        title: req.body.title,
         content: req.body.content,
         images: req.body.images,
     })
