@@ -1,24 +1,45 @@
 // domain/entities/Order.ts
-export interface OrderItem {
+export type OrderStatus =
+  | "CREATED"     // vừa tạo, chưa thanh toán
+  | "PAID"        // đã thanh toán
+  | "CANCELLED"   // user / system hủy
+  | "SHIPPED"     // đã giao cho vận chuyển
+  | "DELIVERED"   // giao thành công
+
+
+export interface CartItem {
   productId: string
   title: string
   price: number
   quantity: number
   size: string
   color: string
+
+  reservedUntil: string
+}
+
+export interface Cart {
+  id: string
+  userId: string
+  items: CartItem[]
+  updatedAt: string
 }
 
 export interface Order {
+  id: string
+  userId: string
+  status: OrderStatus
+
   orderDetails: {
     orderId: string
     orderDate: string
-    items: OrderItem[]
+    items: CartItem[]
     subtotal: number
     shippingCost: number
     tax: number
     total: number
-  }, 
-  id: string,
+  }
+
   firstName: string
   lastName: string
   email: string
@@ -30,3 +51,4 @@ export interface Order {
   zip?: string
   paymentMethod: string
 }
+

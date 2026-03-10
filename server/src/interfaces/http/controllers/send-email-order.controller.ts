@@ -1,6 +1,7 @@
 import { Request, Response } from "express"
 import { NodeMailerEmailService } from "../../../infrastructure/email/node-mailer-emai.service"
 import { Order } from "../../../domain/entities/order"
+import { ProductModel } from "../../../domain/schema/product.schema"
 
 // You can instantiate your email service here or inject it from DI later
 const emailService = new NodeMailerEmailService()
@@ -26,3 +27,4 @@ export async function sendOrderEmailController(req: Request, res: Response) {
     return res.status(500).json({ error: "Failed to notify store" })
   }
 }
+
